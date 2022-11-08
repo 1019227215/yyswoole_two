@@ -1,0 +1,251 @@
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>注册页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="../../assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../assets/css/themify-icons.css">
+    <link rel="stylesheet" href="../../assets/css/metisMenu.css">
+    <link rel="stylesheet" href="../../assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="../../assets/css/export.css" type="text/css" media="all"/>
+    <!-- others css -->
+    <link rel="stylesheet" href="../../assets/css/typography.css">
+    <link rel="stylesheet" href="../../assets/css/default-css.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <link rel="stylesheet" href="../../assets/chosen/chosen.min.css">
+    <!-- modernizr css -->
+    <script src="../../assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- jquery latest version -->
+    <script src="../../assets/js/vendor/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+<!-- preloader area start -->
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- preloader area end -->
+<!-- login area start -->
+<div class="login-area">
+    <div class="container">
+        <div class="login-box ptb--100">
+            <form id="register">
+                <div class="login-form-head">
+                    <h4>Sign up</h4>
+                    <p>Hello there, Sign up and Join with Us</p>
+                </div>
+                <div class="login-form-body">
+                    <div class="form-gp">
+                        <label for="exampleInputName1">Full Name</label>
+                        <input type="text" id="exampleInputName1" name="Uname">
+                        <i class="ti-user"></i>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" id="exampleInputEmail1" name="Email">
+                        <i class="ti-email"></i>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" id="exampleInputPassword1" name="Password">
+                        <i class="ti-lock"></i>
+                    </div>
+                    <div class="form-gp">
+                        <label for="exampleInputPassword2">Confirm Password</label>
+                        <input type="password" id="exampleInputPassword2">
+                        <i class="ti-lock"></i>
+                    </div>
+                    <div class="submit-btn-area">
+                        <button id="form_submit" type="button">Submit <i class="ti-arrow-right"></i></button>
+                    </div>
+                    <div class="form-footer text-center mt-5">
+                        <p class="text-muted">Don't have an account? <a href="../auth/login.html">Sign in</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- login area end -->
+<!--提示弹窗-->
+<div class="modal fade" id="myModal_alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="alert alert-primary" role="alert"
+                 style="min-height: 188px;margin-bottom: 0;text-align: center;">
+                <h4 class="alert-heading"><?php echo $path;?> 提示:</h4>
+                <hr>
+                <p class="mb-0"></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--结束-->
+<script>
+    /**
+     * 接口请求方法
+     * 公共方法
+     */
+    function query(url, fun, dt = {}, tp = "POST", asy = true, dtpe = "json", err = "log") {
+        $.ajax({
+            url: url,
+            async: asy,
+            type: tp,
+            data: dt,
+            // 成功后开启模态框
+            success: fun,
+            error: function (XMLHttpRequest, msg, e) {
+                if (err == "log") {
+                    console.log(XMLHttpRequest, msg, e);
+                } else {
+                    alert(msg);
+                }
+            },
+            dataType: dtpe
+        });
+    }
+
+    /**
+     * 加载内容
+     */
+    function load(data) {
+
+        if (!$.isEmptyObject(data)) {
+            if (data.code == 600) {
+                console.log(data);
+                setCookie('token', data.data.token, 30);
+                localStorage.userinfo = JSON.stringify(data.data);
+                location.href = data.URL;
+            } else {
+                console.log(data.message);
+                loadAlert(data.message);
+            }
+        } else {
+            console.log("内容为空!", data);
+            loadAlert("内容为空!");
+        }
+    }
+
+    /**
+     * 加载内容
+     */
+    function checkdata(data) {
+
+        if (!$.isEmptyObject(data)) {
+
+            if (data.code == 600) {
+
+                //console.log(data);
+                var data = $("#register").serializeArray();
+                query("../../auth/index/add.php", load, data);
+            } else {
+                console.log(data.message);
+                loadAlert(data.message);
+            }
+        } else {
+            console.log("内容为空!", data);
+            loadAlert("内容为空!");
+        }
+    }
+
+    /**
+     * 弹窗内容
+     */
+    function loadAlert($msg){
+
+        $("#myModal_alert .mb-0").html($msg);
+        $("#myModal_alert").modal('show');
+        $("#myModal_alert").on('shown.bs.modal', function () {
+            setTimeout("$(\"#myModal_alert\").modal('hide')",1000);//延时自动关闭
+            //$(this).delay(1000).modal('hide');
+        });
+    }
+
+    /**
+     * 写cookies
+     */
+    function setCookie(name,value,Days)
+    {
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()+";Path="+ escape ("/");
+    }
+
+    /**
+     * 读cookie
+     */
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+    /**
+     * 删cookie
+     */
+    function delCookie(name)
+    {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getCookie(name);
+        if(cval!=null)
+            document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    }
+
+    /**
+     * 提交
+     */
+    $("#form_submit").click(function () {
+
+
+        var tt = /^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/, ss = /\W+/;
+        var name = $("#exampleInputName1").val(),email = $("#exampleInputEmail1").val(),p1 = $("#exampleInputPassword1").val(),p2 = $("#exampleInputPassword2").val();
+
+        if (!tt.test(name) || name == ""){
+            if(ss.test(name) || name == ""){
+                loadAlert("用户名不可为空,不可使用符号!");
+                return false;
+            }
+        }
+
+        if (!tt.test(email) || email ==""){
+                loadAlert("邮箱不可为空或格式错误!");
+                return false;
+        }
+
+        if (p1 != p2 || p1 == "" || p2 == ""){
+            loadAlert("密码不可为空或两次不一样!");
+            return false;
+        }
+
+        var data = $("#register").serializeArray();
+        query("../../auth/index/checkuser.php", checkdata, data);
+    });
+</script>
+<!-- bootstrap 4 js -->
+<script src="../../assets/js/popper.min.js"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="../../assets/js/owl.carousel.min.js"></script>
+<script src="../../assets/js/metisMenu.min.js"></script>
+<script src="../../assets/js/jquery.slimscroll.min.js"></script>
+<script src="../../assets/js/jquery.slicknav.min.js"></script>
+<script src="../../assets/chosen/chosen.jquery.min.js"></script>
+
+<!-- others plugins -->
+<script src="../../assets/js/plugins.js"></script>
+<script src="../../assets/js/scripts.js"></script>
+</body>
+
+</html>

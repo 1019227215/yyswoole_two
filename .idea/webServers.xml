@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9b8c2cbf-3cdf-4708-ae30-592782647e43" name="myitem" url="http://211.149.163.122">
+        <fileTransfer host="211.149.163.122" port="22000" rootFolder="/home/www/yyswoole_two" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22000" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

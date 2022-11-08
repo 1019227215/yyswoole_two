@@ -1,0 +1,50 @@
+PHP Notice:  Undefined index: eth0 in /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php on line 186
+
+Notice: Undefined index: eth0 in /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php on line 186
+Swoole http server is started at http://0.0.0.0:80
+PHP Warning:  mkdir(): Read-only file system in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 143
+
+Warning: mkdir(): Read-only file system in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 143
+PHP Fatal error:  Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":1,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+
+Fatal error: Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":1,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+[2020-10-04 15:03:20 *4877.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":1,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+[2020-10-04 15:03:20 $4875.0]	WARNING	check_worker_exit_status: worker#1[pid=4877] abnormal exit, status=255, signal=0
+PHP Warning:  mkdir(): Read-only file system in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 143
+
+Warning: mkdir(): Read-only file system in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 143
+PHP Fatal error:  Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":3,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+
+Fatal error: Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":3,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+[2020-10-04 15:11:06 *4884.1]	ERROR	php_swoole_server_rshutdown (ERRNO 503): Fatal error: Uncaught Error: Call to undefined function components\swoole_async_writefile() in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php:119
+Stack trace:
+#0 /Volumes/ose/MyItem/yyswoole_two/components/Run.class.php(22): components\Tool::setFile('/log/Run-2020-1...', '{"fd":3,"header...')
+#1 /Volumes/ose/MyItem/yyswoole_two/index.php(74): components\Run::run(Object(Swoole\Http\Request), Object(Swoole\Http\Response), Object(Swoole\Http\Server))
+#2 {main}
+  thrown in /Volumes/ose/MyItem/yyswoole_two/components/Tool.class.php on line 119
+[2020-10-04 15:11:06 $4875.0]	WARNING	check_worker_exit_status: worker#1[pid=4884] abnormal exit, status=255, signal=0
